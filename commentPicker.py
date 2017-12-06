@@ -1,13 +1,13 @@
 import json
 import requests
 
-# enter post id
+# post id
 print("Please enter the post number: ")
 post_id = input()
-# enter the token
+# token
 print("Please enter the token from facebook: ")
 token = input()
-# enter the facebook name which need to be selected
+# save the name which need to be selected
 name_list = []
 print('Please enter the name you want, press enter to continue: ')
 while True:
@@ -20,10 +20,9 @@ while True:
         break
     else:
         print("You already input this name")
-# send the API requests to facebook
+# send the API requests to FB
 res = requests.get("https://graph.facebook.com/v2.8/{}/comments?limit=1000&access_token={}".format(post_id, token))
-#iterate the comments
-#check if its on page
+# Loop through the comments and print the comment id
 print("The comment id you want are as below: ")
 while "paging" in res.json():
     for comment in res.json()["data"]:
